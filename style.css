@@ -522,16 +522,21 @@ nav {
   position: relative;
   max-width: 800px;
   margin: 0 auto;
+  overflow: hidden; /* ADICIONADO: Esconde slides fora da viewport */
 }
 
 .slides {
   display: flex;
   overflow: hidden;
   border-radius: 20px;
+  width: 100%; /* ADICIONADO: Garante largura total */
+  /* CRÍTICO - A TRANSIÇÃO ESTAVA FALTANDO AQUI! */
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .slide {
   min-width: 100%;
+  flex-shrink: 0; /* ADICIONADO: Impede que slides encolham */
   background: var(--branco);
   padding: 3rem;
   text-align: center;
@@ -548,6 +553,7 @@ nav {
 .slide p {
   color: var(--cinza-texto);
   line-height: 1.8;
+  font-size: 1.1rem; /* MELHORADO: Texto mais legível */
 }
 
 /* Controles do carousel */
@@ -568,11 +574,20 @@ nav {
   font-size: 1.2rem;
   cursor: pointer;
   transition: var(--transicao);
+  /* ADICIONADO: Melhor acessibilidade */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
 }
 
 .btn-carousel:hover {
   background: var(--verde-escuro);
   transform: scale(1.1);
+}
+
+.btn-carousel:active {
+  transform: scale(0.95);
 }
 
 /* Indicadores do carousel */
@@ -590,10 +605,90 @@ nav {
   background: #cbd5e1;
   cursor: pointer;
   transition: var(--transicao);
+  /* ADICIONADO: Melhor área de clique */
+  position: relative;
+}
+
+.indicador::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  /* Área de clique maior invisível */
 }
 
 .indicador.ativo {
   background: var(--verde-principal);
+  transform: scale(1.2); /* ADICIONADO: Destaque visual */
+}
+
+.indicador:hover {
+  background: var(--verde-claro);
+  transform: scale(1.1);
+}
+
+/* RESPONSIVIDADE - Adaptação para dispositivos móveis */
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero-texto h1 {
+    font-size: 2.5rem;
+  }
+
+  .nav-menu {
+    display: none; 
+  }
+
+  .botoes-hero {
+    justify-content: center;
+  }
+
+  .titulo-secao h2 {
+    font-size: 2rem;
+  }
+
+  .grade-plantas {
+    grid-template-columns: 1fr;
+  }
+
+  .slide {
+    padding: 2rem 1rem;
+  }
+
+  .slide h3 {
+    font-size: 1.3rem;
+  }
+
+  .slide p {
+    font-size: 1rem;
+  }
+
+  .controles-carousel {
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn-carousel {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .indicadores {
+    margin-top: 0.8rem;
+  }
+
+  .indicador {
+    width: 10px;
+    height: 10px;
+  }
 }
 
 /* FOOTER - Rodapé */
@@ -640,49 +735,6 @@ footer {
   transform: translateY(-3px);
 }
 
-/* RESPONSIVIDADE - Adaptação para dispositivos móveis */
-@media (max-width: 768px) {
-  .hero-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 2rem;
-  }
-
-  .hero-texto h1 {
-    font-size: 2.5rem;
-  }
-
-  .nav-menu {
-    display: none; 
-  }
-
-  .botoes-hero {
-    justify-content: center;
-  }
-
-  .titulo-secao h2 {
-    font-size: 2rem;
-  }
-
-  .grade-plantas {
-    grid-template-columns: 1fr;
-  }
-
-  .slide {
-    padding: 2rem 1rem;
-  }
-
-  .controles-carousel {
-    gap: 0.5rem;
-  }
-
-  .btn-carousel {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-  }
-}
-
 /* ANIMAÇÕES DE ENTRADA */
 .aparecer {
   opacity: 0;
@@ -713,4 +765,20 @@ footer {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* ADICIONADO: Estados de loading/erro do carousel */
+.carousel-loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--cinza-texto);
+}
+
+.carousel-error {
+  text-align: center;
+  padding: 2rem;
+  color: #e53e3e;
+  background: #fed7d7;
+  border-radius: 8px;
+  margin: 1rem 0;
 }
