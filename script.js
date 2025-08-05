@@ -415,13 +415,16 @@ function atualizarCarousel() {
   const slides = document.getElementById("slides-dicas");
   const indicadores = document.querySelectorAll(".indicador");
 
-  // Mover slides
-  slides.style.transform = `translateX(-${slideAtual * 100}%)`;
+  // FÓRMULA CORRIGIDA: slideAtual * 645 negativo
+  const offset = -(slideAtual * 645);
+  slides.style.transform = `translateX(${offset}px)`;
 
   // Atualizar indicadores
   indicadores.forEach((indicador, index) => {
     indicador.classList.toggle("ativo", index === slideAtual);
   });
+  
+  console.log(`Carousel atualizado - slide ${slideAtual + 1}/${dicas.length} - transform: ${offset}px`);
 }
 
 // ==== ANIMAÇÕES DE SCROLL ====
