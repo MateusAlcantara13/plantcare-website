@@ -1,0 +1,716 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Variáveis de cores */
+:root {
+  --verde-principal: #22c55e;
+  --verde-escuro: #16a34a;
+  --verde-claro: #dcfce7;
+  --branco: #ffffff;
+  --cinza-claro: #f8fafc;
+  --cinza-texto: #64748b;
+  --preto-suave: #1e293b;
+  --sombra: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --sombra-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+  --transicao: all 0.3s ease;
+}
+
+/* Configurações gerais do corpo da página */
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  color: var(--preto-suave);
+  overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+/* HEADER - Cabeçalho fixo no topo */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px); /* Efeito de vidro */
+  z-index: 1000;
+  transition: var(--transicao);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo com emoji de planta */
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--verde-principal);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-emoji {
+  font-size: 2rem;
+  animation: balanceio 2s ease-in-out infinite;
+}
+
+/* Animação sutil para o emoji */
+@keyframes balanceio {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+/* Menu de navegação */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: var(--preto-suave);
+  font-weight: 500;
+  transition: var(--transicao);
+  position: relative;
+}
+
+/* Efeito de sublinhado animado */
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--verde-principal);
+  transition: var(--transicao);
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+/* SEÇÃO HERO - Primeira impressão */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--verde-claro) 0%,
+    var(--cinza-claro) 100%
+  );
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Elemento decorativo de fundo */
+.hero::before {
+  content: "🌿";
+  position: absolute;
+  font-size: 20rem;
+  top: 10%;
+  right: -5%;
+  opacity: 0.1;
+  animation: rotacao 20s linear infinite;
+}
+
+@keyframes rotacao {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  z-index: 2;
+}
+
+.hero-texto h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--preto-suave);
+  line-height: 1.1;
+}
+
+.destaque {
+  color: var(--verde-principal);
+  position: relative;
+}
+
+.hero-texto p {
+  font-size: 1.2rem;
+  color: var(--cinza-texto);
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+/* Botões de ação */
+.botoes-hero {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transicao);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primario {
+  background: var(--verde-principal);
+  color: var(--branco);
+  box-shadow: var(--sombra);
+}
+
+.btn-primario:hover {
+  background: var(--verde-escuro);
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-hover);
+}
+
+.btn-secundario {
+  background: transparent;
+  color: var(--verde-principal);
+  border: 2px solid var(--verde-principal);
+}
+
+.btn-secundario:hover {
+  background: var(--verde-principal);
+  color: var(--branco);
+  transform: translateY(-3px);
+}
+
+/* Calculadora interativa de rega */
+.calculadora-rega {
+  background: var(--branco);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+  transition: var(--transicao);
+}
+
+.calculadora-rega:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-hover);
+}
+
+.calculadora-rega h3 {
+  color: var(--verde-principal);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.input-grupo {
+  margin-bottom: 1rem;
+}
+
+.input-grupo label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--preto-suave);
+}
+
+.input-grupo select,
+.input-grupo input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: var(--transicao);
+}
+
+.input-grupo select:focus,
+.input-grupo input:focus {
+  outline: none;
+  border-color: var(--verde-principal);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.resultado-rega {
+  background: var(--verde-claro);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 600;
+  color: var(--verde-escuro);
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SEÇÃO DE PLANTAS - Galeria interativa */
+.secao-plantas {
+  padding: 5rem 5%;
+  background: var(--branco);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.titulo-secao {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.titulo-secao h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--preto-suave);
+  margin-bottom: 1rem;
+}
+
+.titulo-secao p {
+  font-size: 1.1rem;
+  color: var(--cinza-texto);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Filtros de plantas */
+.filtros-plantas {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.filtro-btn {
+  padding: 0.7rem 1.5rem;
+  border: 2px solid var(--verde-principal);
+  background: transparent;
+  color: var(--verde-principal);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: var(--transicao);
+  font-weight: 500;
+}
+
+.filtro-btn.ativo,
+.filtro-btn:hover {
+  background: var(--verde-principal);
+  color: var(--branco);
+  transform: translateY(-2px);
+}
+
+/* Grade de plantas */
+.grade-plantas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Card de cada planta */
+.card-planta {
+  background: var(--branco);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  transition: var(--transicao);
+  cursor: pointer;
+}
+
+.card-planta:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--sombra-hover);
+}
+
+.imagem-planta {
+  height: 200px;
+  background: var(--verde-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.imagem-planta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(34, 197, 94, 0.1) 0%,
+    rgba(34, 197, 94, 0.3) 100%
+  );
+}
+
+.conteudo-planta {
+  padding: 1.5rem;
+}
+
+.conteudo-planta h3 {
+  color: var(--preto-suave);
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.dificuldade {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.facil {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.medio {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.dificil {
+  background: #fecaca;
+  color: #dc2626;
+}
+
+.info-planta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  color: var(--cinza-texto);
+}
+
+/* MODAL - Popup com detalhes da planta */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  opacity: 0;
+  transition: var(--transicao);
+}
+
+.modal.ativo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+.conteudo-modal {
+  background: var(--branco);
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  border-radius: 20px;
+  overflow-y: auto;
+  transform: scale(0.8);
+  transition: var(--transicao);
+}
+
+.modal.ativo .conteudo-modal {
+  transform: scale(1);
+}
+
+.cabecalho-modal {
+  background: var(--verde-principal);
+  color: var(--branco);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.fechar-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--branco);
+  font-size: 2rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transicao);
+}
+
+.fechar-modal:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.corpo-modal {
+  padding: 2rem;
+}
+
+.cuidados-lista {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.cuidados-lista li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* SEÇÃO DE DICAS - Carousel interativo */
+.secao-dicas {
+  padding: 5rem 5%;
+  background: var(--cinza-claro);
+}
+
+.carousel {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.slides {
+  display: flex;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.slide {
+  min-width: 100%;
+  background: var(--branco);
+  padding: 3rem;
+  text-align: center;
+  box-shadow: var(--sombra);
+  transition: var(--transicao);
+}
+
+.slide h3 {
+  color: var(--verde-principal);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.slide p {
+  color: var(--cinza-texto);
+  line-height: 1.8;
+}
+
+/* Controles do carousel */
+.controles-carousel {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn-carousel {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background: var(--verde-principal);
+  color: var(--branco);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: var(--transicao);
+}
+
+.btn-carousel:hover {
+  background: var(--verde-escuro);
+  transform: scale(1.1);
+}
+
+/* Indicadores do carousel */
+.indicadores {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.indicador {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  cursor: pointer;
+  transition: var(--transicao);
+}
+
+.indicador.ativo {
+  background: var(--verde-principal);
+}
+
+/* FOOTER - Rodapé */
+footer {
+  background: var(--preto-suave);
+  color: var(--branco);
+  text-align: center;
+  padding: 3rem 5%;
+}
+
+.footer-conteudo {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-conteudo h3 {
+  color: var(--verde-principal);
+  margin-bottom: 1rem;
+}
+
+.redes-sociais {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.rede-social {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--verde-principal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--branco);
+  font-size: 1.5rem;
+  transition: var(--transicao);
+}
+
+.rede-social:hover {
+  background: var(--verde-escuro);
+  transform: translateY(-3px);
+}
+
+/* RESPONSIVIDADE - Adaptação para dispositivos móveis */
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero-texto h1 {
+    font-size: 2.5rem;
+  }
+
+  .nav-menu {
+    display: none; 
+  }
+
+  .botoes-hero {
+    justify-content: center;
+  }
+
+  .titulo-secao h2 {
+    font-size: 2rem;
+  }
+
+  .grade-plantas {
+    grid-template-columns: 1fr;
+  }
+
+  .slide {
+    padding: 2rem 1rem;
+  }
+
+  .controles-carousel {
+    gap: 0.5rem;
+  }
+
+  .btn-carousel {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+/* ANIMAÇÕES DE ENTRADA */
+.aparecer {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.aparecer.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Loading spinner para interações */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--verde-claro);
+  border-top: 2px solid var(--verde-principal);
+  border-radius: 50%;
+  animation: giro 1s linear infinite;
+}
+
+@keyframes giro {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

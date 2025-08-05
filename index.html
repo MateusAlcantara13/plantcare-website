@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantCare - Cuidados com Plantas</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-emoji">🌱</span>
+                PlantCare
+            </div>
+            
+            <!-- Menu de navegação -->
+            <ul class="nav-menu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#plantas">Plantas</a></li>
+                <li><a href="#dicas">Dicas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SEÇÃO PRINCIPAL -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <!-- Texto principal -->
+            <div class="hero-texto">
+                <h1>Cuide das suas <span class="destaque">plantas</span> como um profissional</h1>
+                <p>Descubra tudo sobre cuidados com plantas, desde iniciante até expert. Transforme sua casa em um jardim!</p>
+                
+                <!-- Botões de ação -->
+                <div class="botoes-hero">
+                    <a href="#plantas" class="btn btn-primario">
+                        🌿 Ver Plantas
+                    </a>
+                    <a href="#dicas" class="btn btn-secundario">
+                        💡 Dicas
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Calculadora interativa de rega -->
+            <div class="calculadora-rega">
+                <h3>🚿 Calculadora de Rega</h3>
+                
+                <div class="input-grupo">
+                    <label for="tipo-planta">Tipo de Planta:</label>
+                    <select id="tipo-planta">
+                        <option value="">Selecione...</option>
+                        <option value="suculenta">Suculenta</option>
+                        <option value="tropical">Tropical</option>
+                        <option value="cacto">Cacto</option>
+                        <option value="fruteira">Fruteira</option>
+                        <option value="flor">Flor</option>
+                    </select>
+                </div>
+                
+                <div class="input-grupo">
+                    <label for="tamanho-vaso">Tamanho do Vaso (cm):</label>
+                    <input type="number" id="tamanho-vaso" placeholder="Ex: 15" min="5" max="100">
+                </div>
+                
+                <div class="input-grupo">
+                    <label for="ambiente">Ambiente:</label>
+                    <select id="ambiente">
+                        <option value="">Selecione...</option>
+                        <option value="interno">Interno</option>
+                        <option value="externo">Externo</option>
+                        <option value="sacada">Sacada</option>
+                    </select>
+                </div>
+                
+                <!-- Resultado da calculadora -->
+                <div class="resultado-rega" id="resultado-rega">
+                    Preencha os campos acima para calcular! 🌱
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE PLANTAS -->
+    <section class="secao-plantas aparecer" id="plantas">
+        <div class="container">
+            <!-- Título da seção -->
+            <div class="titulo-secao">
+                <h2>🌿 Catálogo de Plantas</h2>
+                <p>Explore nossa coleção de plantas e descubra qual é perfeita para você!</p>
+            </div>
+            
+            <!-- Filtros interativos -->
+            <div class="filtros-plantas">
+                <button class="filtro-btn ativo" data-filtro="todas">Todas</button>
+                <button class="filtro-btn" data-filtro="facil">Fácil</button>
+                <button class="filtro-btn" data-filtro="medio">Médio</button>
+                <button class="filtro-btn" data-filtro="dificil">Difícil</button>
+            </div>
+            
+            <!-- Grade de plantas -->
+            <div class="grade-plantas" id="grade-plantas">
+                <!-- As plantas serão inseridas aqui via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL PARA DETALHES DA PLANTA -->
+    <div class="modal" id="modal-planta">
+        <div class="conteudo-modal">
+            <!-- Cabeçalho do modal -->
+            <div class="cabecalho-modal">
+                <button class="fechar-modal" id="fechar-modal">×</button>
+                <h2 id="modal-titulo">Nome da Planta</h2>
+                <p id="modal-emoji">🌱</p>
+            </div>
+            
+            <!-- Corpo do modal -->
+            <div class="corpo-modal">
+                <p id="modal-descricao">Descrição da planta...</p>
+                
+                <h4>Cuidados Necessários:</h4>
+                <ul class="cuidados-lista" id="modal-cuidados">
+                    <!-- Cuidados serão inseridos aqui -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEÇÃO DE DICAS -->
+    <section class="secao-dicas aparecer" id="dicas">
+        <div class="container">
+            <div class="titulo-secao">
+                <h2>💡 Dicas de Especialista</h2>
+                <p>Aprenda com os melhores truques para manter suas plantas saudáveis!</p>
+            </div>
+            
+            <!-- Carousel de dicas -->
+            <div class="carousel">
+                <div class="slides" id="slides-dicas">
+                    <!-- Os slides serão inseridos via JavaScript -->
+                </div>
+                
+                <!-- Controles do carousel -->
+                <div class="controles-carousel">
+                    <button class="btn-carousel" id="anterior">‹</button>
+                    <button class="btn-carousel" id="proximo">›</button>
+                </div>
+                
+                <!-- Indicadores -->
+                <div class="indicadores" id="indicadores">
+                    <!-- Indicadores serão inseridos via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="footer-conteudo">
+            <h3>🌱 PlantCare</h3>
+            <p>Transformando casas em jardins, uma planta de cada vez.</p>
+            
+            <!-- Redes sociais fictícias -->
+            <div class="redes-sociais">
+                <a href="#" class="rede-social">📘</a>
+                <a href="#" class="rede-social">📷</a>
+                <a href="#" class="rede-social">🐦</a>
+                <a href="#" class="rede-social">📱</a>
+            </div>
+            
+            <p>&copy; 2025 Mateus Alcantara. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
