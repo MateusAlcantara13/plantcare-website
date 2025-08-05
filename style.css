@@ -19,11 +19,15 @@
 }
 
 /* Configurações gerais do corpo da página */
+html {
+  font-size: 16px;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
   color: var(--preto-suave);
-  overflow-x: hidden; /* Evita scroll horizontal */
+  overflow-x: hidden;
 }
 
 /* HEADER - Cabeçalho fixo no topo */
@@ -32,7 +36,7 @@ header {
   top: 0;
   width: 100%;
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px); /* Efeito de vidro */
+  backdrop-filter: blur(10px);
   z-index: 1000;
   transition: var(--transicao);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
@@ -78,6 +82,7 @@ nav {
   display: flex;
   list-style: none;
   gap: 2rem;
+  transition: var(--transicao);
 }
 
 .nav-menu a {
@@ -102,6 +107,35 @@ nav {
 
 .nav-menu a:hover::after {
   width: 100%;
+}
+
+/* Menu hamburger para mobile */
+.menu-hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+  z-index: 1001;
+}
+
+.menu-hamburger span {
+  width: 25px;
+  height: 3px;
+  background: var(--verde-principal);
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.menu-hamburger.ativo span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-hamburger.ativo span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-hamburger.ativo span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
 }
 
 /* SEÇÃO HERO - Primeira impressão */
@@ -284,8 +318,10 @@ nav {
 }
 
 .container {
-  max-width: 1200px;
+  width: 100%;
+  padding: 0 1rem;
   margin: 0 auto;
+  max-width: 1200px;
 }
 
 .titulo-secao {
@@ -337,7 +373,7 @@ nav {
 /* Grade de plantas */
 .grade-plantas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
@@ -453,9 +489,10 @@ nav {
 
 .conteudo-modal {
   background: var(--branco);
+  width: 95vw;
   max-width: 600px;
-  width: 90%;
-  max-height: 80vh;
+  max-height: 90vh;
+  margin: 1rem;
   border-radius: 20px;
   overflow-y: auto;
   transform: scale(0.8);
@@ -519,31 +556,39 @@ nav {
   background: var(--cinza-claro);
 }
 
+/* CAROUSEL TOTALMENTE RESPONSIVO */
 .carousel {
-  position: relative;
-  width: 645px !important;
-  max-width: 645px !important;
-  height: 500px;                 
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-height: 400px;
   margin: 0 auto;
-  overflow: hidden !important;
-  padding-bottom: 60px;         
+  overflow: hidden;
+  padding-bottom: 60px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .slides {
   display: flex;
-  width: 3225px; /* 5 × 645px */
+  width: 500%; /* 5 slides × 100% cada */
   transition: transform 0.5s ease-in-out;
 }
 
 .slide {
-  width: 645px !important;
-  flex: 0 0 645px !important;
+  width: 20%; /* 100% / 5 slides */
+  flex: 0 0 20%;
   box-sizing: border-box;
   background: var(--branco);
-  padding: 3rem;
+  padding: 2.5rem;
   text-align: center;
   box-shadow: var(--sombra);
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0.5rem;
+  border-radius: 15px;
 }
 
 .slide h3 {
@@ -555,7 +600,7 @@ nav {
 .slide p {
   color: var(--cinza-texto);
   line-height: 1.8;
-  font-size: 1.1rem; /* MELHORADO: Texto mais legível */
+  font-size: 1.1rem;
 }
 
 /* Controles do carousel */
@@ -576,7 +621,6 @@ nav {
   font-size: 1.2rem;
   cursor: pointer;
   transition: var(--transicao);
-  /* ADICIONADO: Melhor acessibilidade */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -607,7 +651,6 @@ nav {
   background: #cbd5e1;
   cursor: pointer;
   transition: var(--transicao);
-  /* ADICIONADO: Melhor área de clique */
   position: relative;
 }
 
@@ -619,78 +662,16 @@ nav {
   right: -10px;
   bottom: -10px;
   border-radius: 50%;
-  /* Área de clique maior invisível */
 }
 
 .indicador.ativo {
   background: var(--verde-principal);
-  transform: scale(1.2); /* ADICIONADO: Destaque visual */
+  transform: scale(1.2);
 }
 
 .indicador:hover {
   background: var(--verde-claro);
   transform: scale(1.1);
-}
-
-/* RESPONSIVIDADE - Adaptação para dispositivos móveis */
-@media (max-width: 768px) {
-  .hero-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 2rem;
-  }
-
-  .hero-texto h1 {
-    font-size: 2.5rem;
-  }
-
-  .nav-menu {
-    display: none;
-  }
-
-  .botoes-hero {
-    justify-content: center;
-  }
-
-  .titulo-secao h2 {
-    font-size: 2rem;
-  }
-
-  .grade-plantas {
-    grid-template-columns: 1fr;
-  }
-
-  .slide {
-    padding: 2rem 1rem;
-  }
-
-  .slide h3 {
-    font-size: 1.3rem;
-  }
-
-  .slide p {
-    font-size: 1rem;
-  }
-
-  .controles-carousel {
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .btn-carousel {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-  }
-
-  .indicadores {
-    margin-top: 0.8rem;
-  }
-
-  .indicador {
-    width: 10px;
-    height: 10px;
-  }
 }
 
 /* FOOTER - Rodapé */
@@ -769,7 +750,7 @@ footer {
   }
 }
 
-/* ADICIONADO: Estados de loading/erro do carousel */
+/* Estados de loading/erro do carousel */
 .carousel-loading {
   text-align: center;
   padding: 2rem;
@@ -783,4 +764,325 @@ footer {
   background: #fed7d7;
   border-radius: 8px;
   margin: 1rem 0;
+}
+
+/* UTILITY CLASSES RESPONSIVAS */
+.d-none-mobile {
+  display: block;
+}
+
+.d-block-mobile {
+  display: none;
+}
+
+/* =============================================== */
+/* RESPONSIVIDADE COMPLETA - MOBILE FIRST */
+/* =============================================== */
+
+/* Extra Small devices (phones, 576px and down) */
+@media (max-width: 575.98px) {
+  html {
+    font-size: 14px;
+  }
+
+  .hero-texto h1 {
+    font-size: 2rem !important;
+  }
+
+  .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .calculadora-rega {
+    padding: 1rem;
+    margin-top: 20px;
+  }
+
+  nav {
+    padding: 0.8rem 3%;
+  }
+  
+  .menu-hamburger {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: var(--branco);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 2rem;
+    transition: left 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  .nav-menu.ativo {
+    left: 0;
+  }
+
+  .nav-menu li {
+    margin: 1rem 0;
+  }
+
+  .nav-menu a {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .botoes-hero {
+    justify-content: center;
+  }
+
+  .titulo-secao h2 {
+    font-size: 2rem;
+  }
+
+  .grade-plantas {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .imagem-planta {
+    height: 150px;
+    font-size: 3rem;
+  }
+
+  .slide {
+    padding: 1rem;
+    min-height: 300px;
+    margin: 0 0.25rem;
+  }
+
+  .slide h3 {
+    font-size: 1.2rem;
+  }
+
+  .slide p {
+    font-size: 0.9rem;
+  }
+
+  .controles-carousel {
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn-carousel {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .indicadores {
+    margin-top: 0.8rem;
+  }
+
+  .indicador {
+    width: 10px;
+    height: 10px;
+  }
+
+  .conteudo-modal {
+    width: 98vw;
+    max-height: 95vh;
+    margin: 0.5rem;
+  }
+
+  .cabecalho-modal {
+    padding: 1.5rem 1rem;
+  }
+
+  .corpo-modal {
+    padding: 1rem;
+  }
+
+  .secao-plantas,
+  .secao-dicas {
+    padding: 2rem 5%;
+  }
+
+  .d-none-mobile {
+    display: none !important;
+  }
+
+  .d-block-mobile {
+    display: block !important;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .hero-texto h1 {
+    font-size: 2.2rem;
+  }
+
+  .filtros-plantas {
+    gap: 0.5rem;
+  }
+
+  .filtro-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .slide {
+    padding: 1.5rem;
+    min-height: 320px;
+  }
+
+  .menu-hamburger {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: var(--branco);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 2rem;
+    transition: left 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  .nav-menu.ativo {
+    left: 0;
+  }
+
+  .nav-menu li {
+    margin: 1rem 0;
+  }
+
+  .nav-menu a {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .botoes-hero {
+    justify-content: center;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+    padding: 0 2rem;
+  }
+
+  .menu-hamburger {
+    display: none;
+  }
+
+  .nav-menu {
+    position: static;
+    width: auto;
+    height: auto;
+    background: transparent;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 0;
+    box-shadow: none;
+    gap: 2rem;
+  }
+
+  .nav-menu li {
+    margin: 0;
+  }
+
+  .nav-menu a {
+    font-size: 1rem;
+    padding: 0;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .imagem-planta {
+    height: 220px;
+    font-size: 4.5rem;
+  }
+
+  .slide {
+    padding: 2.5rem;
+    min-height: 380px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .grade-plantas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+
+  .hero-content {
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .hero-content {
+    gap: 3rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  html {
+    font-size: 18px;
+  }
+
+  .container {
+    max-width: 1140px;
+  }
+
+  .hero-texto h1 {
+    font-size: 4rem;
+  }
+
+  .secao-plantas,
+  .secao-dicas {
+    padding: 6rem 5%;
+  }
+
+  .grade-plantas {
+    gap: 2.5rem;
+  }
 }
